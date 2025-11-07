@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "644460964225",
+    "project_id": "cinephile-1e455",
+    "storage_bucket": "cinephile-1e455.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644460964225:android:94c3c806719f195b3a2080",
+        "android_client_info": {
+          "package_name": "com.example.cinephile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644460964225-qrch6nrjgm0br103obqu1ilgjo1j1ih3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cinephile",
+            "certificate_hash": "92297752ea74ce324b4f051c01cf1226a1cd8da0"
+          }
+        },
+        {
+          "client_id": "644460964225-qh7825682snhrk0v0f7te134eomgg02q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVQXWx_RxiNOEsOOLovsqi9EK5Q4-Hcpk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644460964225-qh7825682snhrk0v0f7te134eomgg02q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
