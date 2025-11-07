@@ -1,0 +1,50 @@
+name: iOS Simulator build (for Appetize)
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  build-ios-sim:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+
+      - name: Flutter doctor (optional)
+        run: flutter doctor -v
+
+      - name: Install deps
+        run: flutter pub get
+
+      - name: Build iOS (Simulator)
+        run: flutter build ios --simulator --debug
+
+      - name: Zip Runner.app
+        run: |
+          cd build/ios/iphonesimulator
+          zip -r Runner.zip Runner.app
+
+      - name: Upload artifact (Runner.zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Runner-ios-sim
+          path: build/ios/iphonesimulator/Runner.zip
+
+      - name: Upload to Appetize
+        if: ${{ secrets.APPETIZE_TOKEN != '' }}
+        run: |
+          echo "Uploading Runner.zip to Appetize..."
+          RESPONSE=$(curl -s https://api.appetize.io/v1/apps \
+            -F "file=@build/ios/iphonesimulator/Runner.zip" \
+            -F "platform=ios" \
+            -F "token=${{ secrets.APPETIZE_TOKEN }}" \
+            -F "publicKey=${{ secrets.APPETIZE_PUBLIC_KEY }}" \
+            -F "note=${{ github.repository }}@${{ github.ref_name }} (iOS sim build)")
+          echo "Appetize API response:"
+          echo "$RESPONSE"
